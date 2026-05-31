@@ -36,7 +36,7 @@ Allen-Bradley PLC Alarm System
 
 
 # PROJECT STRUCTURE
-
+````text
 ROOT PROJECT
 │
 ├── STM32_Project_v9/
@@ -87,13 +87,13 @@ ROOT PROJECT
 │   └── additional PLC course projects (10 total)
 │
 └── README.md
-
+````
 
 
 
 # SYSTEM DATA FLOW
 
-
+````text
 ADXL335 Sensor
 │
 V
@@ -121,7 +121,7 @@ InfluxDB             Allen-Bradley PLC
 │
 V
 Industrial Alarm Logic
-
+````
 
 #CONTROLLER (STM32) & SIGNAL PROCESSING DETAILS
 
