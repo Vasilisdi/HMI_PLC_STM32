@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "diplomathesis"
+version = "0.1.0"
+description = ""
+authors = ["Vasileios Dimitriou"]
+license = ""
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11.3"  # Python version compatibility
+pyyaml = "^6.0.2"  # YAML parsing library
+python-dotenv = "^1.0.1" # Load environment variables from .env file
+numpy = "^2.2.3"
+requests = "^2.32.3"
+pyserial = "^3.5"
+matplotlib = "^3.10.1"
+scipy = "^1.15.2"
+tzdata = "^2025.1"
+pandas = "^2.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+#So the poetry adds:
+#python add pyyaml
+#poetry add python-dotenv
+#poetry add numpy
+#poetry add requests
+#poetry add pyserial
+#poetry add matplotlib
+#poetry add scipy
+#poetry add tzdata
