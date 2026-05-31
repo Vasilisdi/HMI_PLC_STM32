@@ -1,16 +1,13 @@
-===============================================================================
-VIBRATION MONITORING AND ALARM SYSTEM
-===============================================================================
+# VIBRATION MONITORING AND ALARM SYSTEM
 
-Author: Vasilis Diamantis
+Author: Vasilis Dimitriou
 
 Type: Industrial Implementation Project
 Scope: Integration of STM32 embedded controller with Allen-Bradley PLC system
 
 
--------------------------------------------------------------------------------
-PROJECT OVERVIEW
--------------------------------------------------------------------------------
+
+# PROJECT OVERVIEW
 
 This project focuses on the implementation and integration of an embedded
 vibration monitoring system based on an STM32 microcontroller and an
@@ -38,9 +35,7 @@ AdvancedHMI SCADA Interface
 Allen-Bradley PLC Alarm System  
 
 
--------------------------------------------------------------------------------
-PROJECT STRUCTURE
--------------------------------------------------------------------------------
+# PROJECT STRUCTURE
 
 ROOT PROJECT
 │
@@ -94,9 +89,9 @@ ROOT PROJECT
 └── README.md
 
 
--------------------------------------------------------------------------------
-SYSTEM DATA FLOW
--------------------------------------------------------------------------------
+
+# SYSTEM DATA FLOW
+
 
 ADXL335 Sensor
 │
@@ -127,9 +122,7 @@ V
 Industrial Alarm Logic
 
 
--------------------------------------------------------------------------------
-CONTROLLER (STM32) & SIGNAL PROCESSING DETAILS
--------------------------------------------------------------------------------
+#CONTROLLER (STM32) & SIGNAL PROCESSING DETAILS
 
 The STM32 controller continuously acquires vibration data from the ADXL335
 sensor using high-speed ADC + DMA sampling.
@@ -145,9 +138,9 @@ This produces a high-resolution time-domain dataset suitable for industrial
 condition monitoring and fault detection.
 
 
--------------------------------------------------------------------------------
-FREQUENCY DOMAIN TRANSFORMATION (FFT)
--------------------------------------------------------------------------------
+
+# FREQUENCY DOMAIN TRANSFORMATION (FFT)
+
 
 After acquisition, the system performs FFT transformation on the dataset.
 
@@ -163,9 +156,8 @@ This allows detection of:
 - Structural vibration patterns  
 
 
--------------------------------------------------------------------------------
-DATA REDUCTION STRATEGY (IMPORTANT DESIGN DECISION)
--------------------------------------------------------------------------------
+# DATA REDUCTION STRATEGY (IMPORTANT DESIGN DECISION)
+
 
 Although the system generates a very high-volume dataset, not all data is
 transmitted to external systems.
@@ -194,9 +186,8 @@ Trade-off: reduced resolution in exchange for system stability and real-time
 performance.
 
 
--------------------------------------------------------------------------------
-MQTT ARCHITECTURE
--------------------------------------------------------------------------------
+# MQTT ARCHITECTURE
+
 
 Waveform Topic:
 vibration/sensor1/waveform/<date>
@@ -212,9 +203,7 @@ Payload:
 1 → Vibration alarm triggered  
 
 
--------------------------------------------------------------------------------
-C++ DATA PROCESSING PIPELINE
--------------------------------------------------------------------------------
+# C++ DATA PROCESSING PIPELINE
 
 - Read USB CDC stream from STM32  
 - Store raw ADC values  
@@ -226,9 +215,7 @@ C++ DATA PROCESSING PIPELINE
 - Publish alarm bit based on threshold detection  
 
 
--------------------------------------------------------------------------------
-INFLUXDB STORAGE SYSTEM
--------------------------------------------------------------------------------
+# INFLUXDB STORAGE SYSTEM
 
 InfluxDB is used as a time-series database for:
 
@@ -241,9 +228,8 @@ vibration_frequency
 → stores FFT results and spectral data  
 
 
--------------------------------------------------------------------------------
-TELEGRAF PIPELINE
--------------------------------------------------------------------------------
+# TELEGRAF PIPELINE
+
 
 Telegraf acts as a bridge between MQTT and InfluxDB:
 
@@ -255,9 +241,7 @@ Subscribed topics:
 - frequency spectrum data  
 
 
--------------------------------------------------------------------------------
-ADVANCEDHMI + PLC SYSTEM
--------------------------------------------------------------------------------
+# ADVANCEDHMI + PLC SYSTEM
 
 AdvancedHMI receives MQTT alarm messages from topic:
 
@@ -275,10 +259,13 @@ PLC behavior:
 - Executes reset/silence logic  
 - Drives industrial alarm outputs  
 
+<img width="771" height="421" alt="Untitled" src="https://github.com/user-attachments/assets/41dd26f0-f128-463f-a570-f120f11087c9" />
 
--------------------------------------------------------------------------------
-REPOSITORY STRUCTURE (IMPORTANT NOTE)
--------------------------------------------------------------------------------
+
+
+
+# REPOSITORY STRUCTURE (IMPORTANT NOTE)
+
 
 This project is organized into two main repositories:
 
@@ -307,9 +294,7 @@ Contains approximately 10 separate PLC projects developed during the PLC course:
 - Educational PLC structures and patterns  
 
 
--------------------------------------------------------------------------------
-STARTUP SEQUENCE
--------------------------------------------------------------------------------
+# STARTUP SEQUENCE
 
 1. Start MQTT Broker (Mosquitto)  
 2. Start InfluxDB (influxd.exe)  
@@ -319,9 +304,7 @@ STARTUP SEQUENCE
 6. Observe PLC alarm response and database ingestion  
 
 
--------------------------------------------------------------------------------
-KEY SUMMARY
--------------------------------------------------------------------------------
+# KEY SUMMARY
 
 This system demonstrates a full industrial condition monitoring pipeline with:
 
@@ -332,8 +315,3 @@ This system demonstrates a full industrial condition monitoring pipeline with:
 - SCADA visualization through AdvancedHMI  
 - PLC-based industrial alarm handling  
 - Dual-repository architecture (system + PLC training projects)  
-
-
-===============================================================================
-END OF DOCUMENT
-===============================================================================
