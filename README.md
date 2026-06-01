@@ -6,6 +6,8 @@ Type: Industrial Implementation Project
 Scope: Integration of STM32 embedded controller with Allen-Bradley PLC system
 
 
+# ABOUT PROJECΤ
+This project encompasses two different branches, the first branch is named "full_project" which contains an implementation that makes use of both an STM32 and an Allen-Brandley PLC, and the ultimate goal of their co-existance is the control of a pump while the STM32 aims at providing some alarm on the HMI in case the vibration exceeds some threshhold. The second branch name "main" contains 10 different PLC programs - projects.
 
 # PROJECT OVERVIEW
 
